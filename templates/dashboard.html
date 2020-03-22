@@ -1,0 +1,70 @@
+{% load crispy_forms_tags %}
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/dashboard.css'%}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="{% static 'js/dashboard.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <title>Document</title>
+</head>
+<body>
+    {% include "navbar.html" %}
+    <div class="container">
+        {% csrf_token %}
+        <h1 class="title">Dashboard</h1>
+        <div class="row margin-top">
+            <div class="col-sm">
+                {{ form.country | as_crispy_field }}
+            </div>
+            <div class="col-sm">
+                {{ form.region | as_crispy_field }}
+            </div>
+            <div class="col-sm">
+                {{ form.cluster | as_crispy_field }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm">
+                <h2 class="text-center margin-top">Assessment Status of Participants</h2>
+            </div>  
+        </div>
+        <div class="row">
+            <div class="col-sm margin-top">
+            <canvas id="myChart"></canvas>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm margin-top">
+                <br>
+                <h2 class="subtitle">Patients with an Incomplete Questionnaire Assessment Status</h2>
+                <br>
+                <table id="patient_table" class="table">
+                    <thead>
+                        <th>
+                            Patient ID
+                        </th>
+                        <th>
+                            Questionnaire ID
+                        </th>
+                        <th>
+                            Questionnaire Name
+                        </th>
+                        <th>
+                            Start Date
+                        </th>
+                    </thead>
+                    <tbody id="patient_table_body">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</body>
+</html>
