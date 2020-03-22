@@ -232,7 +232,7 @@ class PatientAssessmentTable(APIView):
         serializer = PatientAssessmentSerializer(data, many=True)
         return Response(serializer.data)
 
-def post(self, request):
+    def post(self, request):
         # An array of PatientAssessment Table Entries
         results = []
         data = request.data
