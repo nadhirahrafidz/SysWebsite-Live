@@ -20,13 +20,13 @@ def getToken(request):
                 'Content-type': 'application/json',
                 }
             # Hard coded URL
-            r = requests.post('http://127.0.0.1:8000/users/', data=json.dumps(data), headers=headers)
+            r = requests.post('https://system-engineering.herokuapp.com/users/', data=json.dumps(data), headers=headers)
             if r.status_code == 201 or r.status_code == 200:
                 data ={
                     "username": form.cleaned_data['username'],
                     "password": form.cleaned_data['password'],
                 }
-                token_request = requests.post('http://127.0.0.1:8000/tables/login/', data=json.dumps(data), headers=headers)
+                token_request = requests.post('https://system-engineering.herokuapp.com/tables/login/', data=json.dumps(data), headers=headers)
                 token_dict = token_request.text
                 token = json.loads(token_dict)['token']
                 username = form.cleaned_data['username']
