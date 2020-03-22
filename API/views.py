@@ -155,7 +155,7 @@ class PatientTable(APIView):
     def post(self, request):
         data = request.data
         results = []
-        for patient in data['data']:
+        for patient in data:
             enumerator = get_object_or_404(Enumerator, enumeratorID=patient['enumeratorID'])
             household = get_object_or_404(HouseHold, householdID=patient['householdID'])
             patient, created = Patient.objects.get_or_create(
