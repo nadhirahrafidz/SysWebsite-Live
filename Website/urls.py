@@ -11,6 +11,7 @@ from Builder import views as builder_views
 from Website.Auth import views as website_auth_views
 from Dashboard import views as dash_view
 from Users import views as enum_view
+from Locations import views as loc_view
 
 # Michael Old Reports
 from Locations import views as location_views
@@ -36,4 +37,5 @@ urlpatterns = [
     url('dashboard/', include(("Dashboard.urls", "Dashboard"), namespace="Dashboard")),
     url('enumerators/', include(("Users.urls", "Enumerator"), namespace="Enumerator")), 
     url('reports/', include(("Reports.urls", "Reports"), namespace="Reports")),
+    url('locations/', include(("Locations.urls", "Locations"), namespace="Locations")),
     ]

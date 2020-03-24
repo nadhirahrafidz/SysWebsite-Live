@@ -36,7 +36,7 @@ INSTALLED_APPS = [
     'Patients',
     'Questions',
     'Users',
-    'Diagnosis',
+    # 'Diagnosis',
     'API',
     'Home',
     'Website.Auth',
