@@ -9,8 +9,6 @@ $('document').ready(function(){
         get_data(0,0,0)
         get_patient_data(0,0,0)    
     })
-    
-    
 })
 
 function get_data(countryID, regionID, clusterID)
@@ -24,6 +22,7 @@ function get_data(countryID, regionID, clusterID)
         },
         success: function(response) 
         {
+            console.log("BUILDING")
             build_pie_chart(response.data)
         }
     });
@@ -40,6 +39,7 @@ function get_patient_data(countryID, regionID, clusterID)
         },
         success: function(response) 
         {
+            console.log(response)
             var i = 0
             $("#patient_table_body").empty();
             for(data in response.data)
@@ -53,6 +53,7 @@ function get_patient_data(countryID, regionID, clusterID)
 
 function build_row(patientID, questionnaireID, questionnaireString, start)
 {
+    console.log("Building")
     tableBody = $("#patient_table_body")
     header_open = "<tr>"
     header_close = "</tr>"
@@ -63,6 +64,7 @@ function build_row(patientID, questionnaireID, questionnaireString, start)
 
 function build_data_in_row(patientID, questionnaireID, questionnaireString, start)
 {
+    console.log("Row: " + patientID)
     tableBody = $("#patient_table_body") 
     patientID = "<td>" + patientID + "</td>"
     questionnaireID = "<td>" + questionnaireID + "</td>"

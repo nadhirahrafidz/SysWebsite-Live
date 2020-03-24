@@ -69,32 +69,23 @@ def ajaxIncompletePatients(request):
     if clusterID != '0':
         incomplete_patients = PatientAssessment.objects.filter(
             questionnaireStatus = "INCOMPLETE", 
-            assess_patientID__householdID__parentLocID = int(clusterID)).values()
+            assess_patientID__householdID__parentLocID = int(clusterID)).select_related()
     elif regionID != '0':
         incomplete_patients = PatientAssessment.objects.filter(
             questionnaireStatus = "INCOMPLETE",
-            assess_patientID__householdID__parentLocID__parentLocID = int(regionID)).values()
+            assess_patientID__householdID__parentLocID__parentLocID = int(regionID)).select_related()
     elif countryID != '0':
         incomplete_patients = PatientAssessment.objects.filter(
                     questionnaireStatus = "INCOMPLETE",
-                    assess_patientID__householdID__parentLocID__parentLocID__parentLocID = int(countryID)).values()
+                    assess_patientID__householdID__parentLocID__parentLocID__parentLocID = int(countryID)).select_related()
     elif countryID == '0':
         incomplete_patients = PatientAssessment.objects.filter(questionnaireStatus = "INCOMPLETE").select_related()
     data = []
     for patient in incomplete_patients:
-        
         data.append({
             'patient_id' : patient.assess_patientID.patientID,
             'questionnaire_id': patient.assess_questionnaireID.questionnaireID,
             'questionnaire_name': patient.assess_questionnaireID.questionnaireName,
             'start': patient.start
         })
-        # data.append({
-        #     'patient_id' : patient['assess_patientID_id'],
-        #     'questionnaire_id': patient['assess_questionnaireID_id'],
-        #     'start': patient['start']
-        # })
-        # print(patient.assess_questionnaireID.questionnaireName)
-        # print(patient.assess_patientID)
-
     return JsonResponse({'data':data})
