@@ -19,7 +19,6 @@ def getToken(request):
             headers = {
                 'Content-type': 'application/json',
                 }
-            # Hard coded URL
             r = requests.post('https://system-engineering.herokuapp.com/users/', data=json.dumps(data), headers=headers)
             if r.status_code == 201 or r.status_code == 200:
                 data ={
@@ -32,8 +31,10 @@ def getToken(request):
                 username = form.cleaned_data['username']
                 email = form.cleaned_data['email']
                 return redirect('add/%s/%s/%s/' % (token, username, email))
-            # ERROR HANDLING IF FORM IS NOT VALID
+    
+    enumerators = Enumerator.objects.all()
     context ={
+        "enumerators":enumerators,
         "form": form,
     }
     return render(request, 'enumerator_token.html', context)

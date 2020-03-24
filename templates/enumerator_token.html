@@ -25,6 +25,31 @@
                 </form>
             </div>
         </div>
+        <div class="row">
+            <div class="col-sm">
+                <h3 style="margin-top: 100;">Registered Enumerators</h3>
+                <table class="table table-responsive table-hover">
+                    <thead>
+                        <tr>
+                            <th>
+                                Username
+                            </th>
+                            <th>
+                                Organization
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for enum in enumerators%}
+                        <tr style="width:100%;">
+                            <td>{{enum.username}}</td>
+                            <td>{{enum.organization}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
     
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
