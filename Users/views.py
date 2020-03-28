@@ -6,6 +6,7 @@ import requests
 import json
 
 # Create your views here.
+@user_passes_test(lambda u: u.is_superuser)
 def getToken(request):
     form = enumeratorTokenForm()
     if request.method == 'POST':
@@ -39,6 +40,7 @@ def getToken(request):
     }
     return render(request, 'enumerator_token.html', context)
 
+@user_passes_test(lambda u: u.is_superuser)
 def addEnumerator(request, token, username, email):
     if request.method == 'POST':
         print("posting")
@@ -73,6 +75,7 @@ def addEnumerator(request, token, username, email):
     }
     return render(request, 'enumerator_table.html', context)
 
+@user_passes_test(lambda u: u.is_superuser)
 def response_message(request, status):
     if status == 1:
         context = {

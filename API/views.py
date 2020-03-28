@@ -137,13 +137,51 @@ Returned fields: patientID, studyID, date_of_birth, prefix, firstName, middleNam
 notes, lvl_edu, work_status, marital_status, motherFirstName, motherLastName, tel1_num, tel1_owner, tel1_owner_rel, tel2_num, tel2_owner, 
 tel2_owner_rel, nationalID, deceased, deceased_date, responder, proxy_rel, enumeratorID, householdID
 
-Body parameters: clusterID - cluster in which the patient's householdID is registered under (household's parentLocID)
+Parameters: clusterID - cluster in which the patient's householdID is registered under (household's parentLocID)
 Key: clusterID
 Example: 
 {
     "clusterID":"33"
 }
+
+POST Example:
+[
+    {
+        "patientID": "1",
+        "studyID": "100100",
+        "date_of_birth": "1998-07-20",
+        "prefix": "MS",
+        "firstName": "JANE",
+        "middleName": "",
+        "lastName": "DOE",
+        "suffix": "",
+        "com_name": "",
+        "gender": "F",
+        "householdID": "1",
+        "dur_hh": "1",
+        "notes": "",
+        "lvl_edu": "TERTIARY",
+        "work_status": "EMPLOYED",
+        "marital_status": "SINGLE",
+        "motherFirstName": "SARINA",
+        "motherLastName": "KARIM",
+        "tel1_num": "447534320772",
+        "tel1_owner": "JANE DOE",
+        "tel1_owner_rel": "SELF",
+        "tel2_num": "",
+        "tel2_owner": "",
+        "tel2_owner_rel": "",
+        "enumeratorID": "1",
+        "nationalID": "980720435106",
+        "deceased": 0,
+        "deceased_date": null,
+        "responder": "SELF",
+        "proxy_name": "",
+        "proxy_rel": ""
+    }
+]
 """
+
 class PatientTable(APIView):
     def get(self, request):
         location = request.GET.get("clusterID")
@@ -205,24 +243,24 @@ Endpoint: /tables/PatientAssessment
 GET Request: returns LIST of all PatientAssessment Table entries made by patients within a certain Cluster Location
 
 Returned fields: index, questionnaireStatus, start, end, assess_patientID, assess_questionnaireID
-Body parameters: clusterID - cluster in which the patient's householdID is registered under (household's parentLocID)
+Parameters: clusterID - cluster in which the patient's householdID is registered under (household's parentLocID)
 Key: clusterID
 Example: 
 {
     "clusterID":"33"
 }
 
-POST Request
+POST Request Body
 Example:
-{
-	[{
-		"assess_patientID":"31",
-		"assess_questionnaireID":"3",
-		"questionnaireStatus":"COMPLETE",
-		"start":"2020-02-21",
-		"end":"2020-02-29"
-	}]
-}
+[{
+        "index": 25,
+        "assess_patientID": "123456789101112",
+        "assess_questionnaireID": 2,
+        "questionnaireStatus": "INCOMPLETE",
+        "start": "2020-03-23",
+        "end": "",
+        "last_answered_qn": 74
+}]
 """
 class PatientAssessmentTable(APIView):
     def get(self, request):
@@ -259,6 +297,9 @@ class PatientAssessmentTable(APIView):
         serializer = PatientAssessmentSerializer(results, many = True)
         return Response(serializer.data)
 
+"""
+"""
+
 class QuestionResponseTable(APIView):
     def get(self, request):
         clusterID = request.GET.get("clusterID")
@@ -289,6 +330,15 @@ class QuestionResponseTable(APIView):
         serializer = QuestionResponseSerializer(results, many=True)
         return Response(serializer.data)
 
+"""
+GET Request 
+Key: clusterID
+Example: 
+{
+    "clusterID":"33"
+}
+
+"""
 class HouseholeTable(APIView):
     def get(self, request):
         clusterID = request.GET.get("clusterID")
