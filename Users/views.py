@@ -4,6 +4,7 @@ from Users.models import *
 from Users.forms import *
 import requests 
 import json
+from django.contrib.auth.decorators import user_passes_test
 
 # Create your views here.
 @user_passes_test(lambda u: u.is_superuser)
