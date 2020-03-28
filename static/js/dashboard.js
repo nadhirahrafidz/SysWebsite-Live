@@ -5,6 +5,8 @@ $('document').ready(function(){
     $('#id_cluster').find('option').each(function() {
         $(this).attr('hidden',true);
     });
+
+    // Sets the data to its default state of: "Get ALL data where patients assessment status is INCOMPLETE"
     $(function(ready){
         get_data(0,0,0)
         get_patient_data(0,0,0)    
@@ -22,7 +24,6 @@ function get_data(countryID, regionID, clusterID)
         },
         success: function(response) 
         {
-            console.log("BUILDING")
             build_pie_chart(response.data)
         }
     });

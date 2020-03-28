@@ -12,6 +12,7 @@ from Website.Auth import views as website_auth_views
 from Dashboard import views as dash_view
 from Users import views as enum_view
 from Locations import views as loc_view
+from Home import views as test_view
 
 # Michael Old Reports
 from Locations import views as location_views
@@ -38,4 +39,5 @@ urlpatterns = [
     url('enumerators/', include(("Users.urls", "Enumerator"), namespace="Enumerator")), 
     url('reports/', include(("Reports.urls", "Reports"), namespace="Reports")),
     url('locations/', include(("Locations.urls", "Locations"), namespace="Locations")),
+    url('loaderio-5394cb69fc9debd1de2f68952e5fcea0', test_view.home, name="loaderIO")
     ]
